@@ -1,0 +1,60 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "files": {
+    "include": ["src/**/*.js", "src/**/*.ts", "src/**/*.json"],
+    "ignore": [
+      "src/__tests__/jsonpath-compliance-test-suite",
+      "src/parser/parser.js",
+      "src/parser/parser.d.ts"
+    ]
+  },
+  "formatter": {
+    "enabled": true
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "complexity": {
+        "noExcessiveCognitiveComplexity": {
+          "level": "error",
+          "options": {
+            "maxAllowedComplexity": 20
+          }
+        }
+      },
+      "nursery": {
+        "noProcessEnv": "error"
+      },
+      "correctness": {
+        "noUnusedImports": "error",
+        "noVoidTypeReturn": "off"
+      },
+      "performance": {
+        "noBarrelFile": "error",
+        "noReExportAll": "error"
+      },
+      "style": {
+        "useNodeAssertStrict": "error",
+        "useDefaultSwitchClause": "info"
+      },
+      "suspicious": {
+        "noConsole": "error",
+        "noEvolvingTypes": "error"
+      }
+    }
+  },
+  "organizeImports": {
+    "enabled": true
+  },
+  "json": {
+    "formatter": {
+      "indentStyle": "space",
+      "trailingCommas": "none"
+    }
+  }
+}

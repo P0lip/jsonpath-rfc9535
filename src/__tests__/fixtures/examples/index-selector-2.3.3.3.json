@@ -1,0 +1,13 @@
+{
+  "document": ["a", "b"],
+  "queries": [
+    {
+      "path": "$[1]",
+      "values": ["b"]
+    },
+    {
+      "path": "$[-2]",
+      "values": ["a"]
+    }
+  ]
+}

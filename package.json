@@ -1,0 +1,56 @@
+{
+  "name": "jsonpath-rfc9535",
+  "version": "1.0.0",
+  "description": "A JSONPath implementation based on RFC 9535",
+  "keywords": [
+    "json",
+    "jsonpath",
+    "rfc9535"
+  ],
+  "homepage": "https://github.com/P0lip/jsonpath-rfc9535",
+  "bugs": {
+    "url": "https://github.com/P0lip/jsonpath-rfc9535/issues"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "files": [
+    "src",
+    "dist"
+  ],
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./parser": {
+      "types": "./dist/parser/index.d.ts",
+      "import": "./dist/parser/index.js"
+    }
+  },
+  "sideEffects": false,
+  "license": "Apache-2.0",
+  "author": "P0lip",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/P0lip/jsonpath-rfc9535"
+  },
+  "scripts": {
+    "build": "tsc --outDir dist",
+    "build.parser": "peggy src/parser/grammars/grammar.peggy --output src/parser/parser.js --format es --dts",
+    "lint": "npx @biomejs/biome check",
+    "type-check": "tsc --noEmit",
+    "test": "node --test --experimental-strip-types --experimental-test-coverage --test-reporter=lcov --test-reporter=dot --test-reporter-destination=lcov.info --test-reporter-destination=stdout",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "husky": "^9.0.10",
+    "peggy": "^4.2.0",
+    "typescript": "^5.7.2"
+  },
+  "packageManager": "npm@10.9.2+sha512.8ab88f10f224a0c614cb717a7f7c30499014f77134120e9c1f0211ea3cf3397592cbe483feb38e0c4b3be1c54e347292c76a1b5edb94a3289d5448484ab8ac81"
+}

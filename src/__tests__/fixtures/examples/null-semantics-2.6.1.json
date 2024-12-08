@@ -1,0 +1,41 @@
+{
+  "document": { "a": null, "b": [null], "c": [{}], "null": 1 },
+  "queries": [
+    {
+      "path": "$.a",
+      "values": [null]
+    },
+    {
+      "path": "$.a[0]",
+      "values": []
+    },
+    {
+      "path": "$.a.d",
+      "values": []
+    },
+    {
+      "path": "$.b[0]",
+      "values": [null]
+    },
+    {
+      "path": "$.b[*]",
+      "values": [null]
+    },
+    {
+      "path": "$.b[?@]",
+      "values": [null]
+    },
+    {
+      "path": "$.b[?@==null]",
+      "values": [null]
+    },
+    {
+      "path": "$.c[?@.d==null]",
+      "values": []
+    },
+    {
+      "path": "$.null",
+      "values": [1]
+    }
+  ]
+}

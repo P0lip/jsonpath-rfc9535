@@ -1,0 +1,9 @@
+{
+  "document": { "k": "v" },
+  "queries": [
+    {
+      "path": "$",
+      "values": [{ "k": "v" }]
+    }
+  ]
+}

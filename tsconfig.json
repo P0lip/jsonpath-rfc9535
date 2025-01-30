@@ -17,7 +17,7 @@
     "allowJs": true,
     "declaration": true,
     "sourceMap": true,
-    "outDir": "./dist",
+    "outDir": "./dist/esm",
     "importHelpers": false,
     "noEmitHelpers": true,
     "noEmitOnError": true,

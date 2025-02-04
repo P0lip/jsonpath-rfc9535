@@ -19,16 +19,29 @@
     "dist"
   ],
   "type": "module",
-  "types": "./dist/index.d.ts",
-  "module": "./dist/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "module": "./dist/esm/index.js",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/index.d.ts",
+        "default": "./dist/commonjs/index.js"
+      }
     },
+    "./package.json": "./package.json",
     "./parser": {
-      "types": "./dist/parser/index.d.ts",
-      "import": "./dist/parser/index.js"
+      "import": {
+        "types": "./dist/esm/parser/index.d.ts",
+        "default": "./dist/esm/parser/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/parser/index.d.ts",
+        "default": "./dist/commonjs/parser/index.js"
+      }
     }
   },
   "sideEffects": false,
@@ -39,7 +52,9 @@
     "url": "https://github.com/P0lip/jsonpath-rfc9535"
   },
   "scripts": {
-    "build": "tsc --outDir dist",
+    "build:esm": "tsc --outDir dist/esm && echo '{\"type\":\"module\"}' > dist/esm/package.json",
+    "build:cjs": "tsc --project tsconfig.cjs.json --outDir dist/commonjs && echo '{\"type\":\"commonjs\"}' > dist/commonjs/package.json",
+    "build": "npm run build:esm && npm run build:cjs",
     "build.parser": "peggy src/parser/grammars/grammar.peggy --output src/parser/parser.js --format es --dts",
     "lint": "npx @biomejs/biome check",
     "type-check": "tsc --noEmit",

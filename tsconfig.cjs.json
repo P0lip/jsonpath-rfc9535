@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "outDir": "./dist/commonjs",
+    "verbatimModuleSyntax": false,
+    "noEmitHelpers": false,
+    "resolvePackageJsonExports": false,
+    "resolvePackageJsonImports": false
+  }
+}

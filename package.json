@@ -1,6 +1,6 @@
 {
   "name": "jsonpath-rfc9535",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A JSONPath implementation based on RFC 9535",
   "keywords": [
     "json",

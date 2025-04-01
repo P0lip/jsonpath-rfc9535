@@ -9,13 +9,19 @@ import type { JsonValue } from "./results.ts";
 import type { Callback, Context } from "./types.ts";
 import visitQuery from "./visitors/query.ts";
 
+export type Options = {
+	capturePaths: boolean;
+};
+
 export default function exec(
 	input: JsonValue,
 	expression: string,
+	opts: Options,
 	cb: Callback,
 ): void {
 	const ctx: Context = {
 		cache: new Map(),
+		capturePaths: opts.capturePaths,
 		functions: {
 			count,
 			search,

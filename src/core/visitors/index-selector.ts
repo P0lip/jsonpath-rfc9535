@@ -1,5 +1,6 @@
 import type { IndexSelector } from "../../parser/ast.ts";
-import type { JsonValue } from "../results.js";
+import { joinPathWithKey } from "../path.ts";
+import type { JsonValue } from "../results.ts";
 import type { Context, StackItem } from "../types.ts";
 
 function getArrayIndex(index: number, length: number): number {
@@ -15,6 +16,7 @@ export default function visitIndexSelector(
 	if (index >= 0 && index < item.value.length) {
 		ctx.stack.push({
 			root: item.root,
+			path: joinPathWithKey(item.path, index),
 			value: item.value[index],
 			index: item.index + 1,
 		});

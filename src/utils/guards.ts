@@ -1,4 +1,4 @@
-import type { JsonValue } from "../core/results.js";
+import type { JsonValue } from "../core/results.ts";
 import type { StackItem } from "../core/types.ts";
 
 export function isPlainObject(

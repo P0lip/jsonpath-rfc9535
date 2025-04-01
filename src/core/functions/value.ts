@@ -1,5 +1,5 @@
 import { Nothing } from "../results.ts";
-import type { FunctionDeclaration } from "./types.js";
+import type { FunctionDeclaration } from "./types.ts";
 
 export default {
 	declaration: function value(ctx, nodes) {

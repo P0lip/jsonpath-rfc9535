@@ -3,11 +3,13 @@
   "queries": [
     {
       "path": "$[1]",
-      "values": ["b"]
+      "values": ["b"],
+      "paths": ["$[1]"]
     },
     {
       "path": "$[-2]",
-      "values": ["a"]
+      "values": ["a"],
+      "paths": ["$[0]"]
     }
   ]
 }

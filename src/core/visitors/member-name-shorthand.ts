@@ -1,13 +1,19 @@
 import type { MemberNameShorthand } from "../../parser/ast.ts";
-import type { JsonValue } from "../results.js";
+import { joinPathWithKey } from "../path.ts";
+import type { JsonValue } from "../results.ts";
 import type { Context, StackItem } from "../types.ts";
 
 export default function visitMemberNameShorthand(
 	ctx: Context,
-	{ root, index, value }: StackItem<Record<string, JsonValue>>,
+	{ root, path, value, index }: StackItem<Record<string, JsonValue>>,
 	node: MemberNameShorthand,
 ): void {
 	if (Object.hasOwn(value, node.value)) {
-		ctx.stack.push({ root, value: value[node.value], index: index + 1 });
+		ctx.stack.push({
+			root,
+			path: joinPathWithKey(path, node.value),
+			value: value[node.value],
+			index: index + 1,
+		});
 	}
 }

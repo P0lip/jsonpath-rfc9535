@@ -4,7 +4,9 @@ A JSONPath implementation based on [RFC 9535](https://datatracker.ietf.org/doc/r
 
 Works in any environment complying with ECMAScript 2022.
 
-It passes the entire [JSONPath Compliance Test Suite](https://github.com/jsonpath-standard/jsonpath-compliance-test-suite) with 100% success rate (tested against commit 9277705).
+The package has no runtime dependencies.
+
+It passes the entire [JSONPath Compliance Test Suite](https://github.com/jsonpath-standard/jsonpath-compliance-test-suite) with a 100% success rate (tested against commit 05f6cac).
 
 If you are interested in a legacy specification, please check out my other package [nimma](https://github.com/P0lip/nimma).
 
@@ -19,6 +21,12 @@ npm install jsonpath-rfc9535
 or a package manager of your choice.
 
 ## Usage
+
+Given any JSON value, you have the following functions at your disposal.
+
+### query function
+
+The `query` function retrieves an array of all matched values.
 
 ```js
 import { query } from 'jsonpath-rfc9535';
@@ -63,10 +71,36 @@ const document = {
 const path = '$.store.book[*].author';
 const result = query(document, path);
 
-console.log(result); // Outputs: ['Nigel Rees', 'Evelyn Waugh', 'Herman Melville', 'J. R. R. Tolkien']
+console.log(result); // Prints: ['Nigel Rees', 'Evelyn Waugh', 'Herman Melville', 'J. R. R. Tolkien']
 ```
 
-You can also import `exec` member that takes a callback.
+### paths
+
+The `paths` function retrieves an array of all normalized paths of matched inputs.
+
+```ts
+import { paths } from 'jsonpath-rfc9535';
+
+const document = {
+  // ...
+}
+
+const path = '$.store.book[*].author';
+const result = paths(document, path);
+
+console.log(result); // Prints an array consisting of the following values:
+// "$['store']['book'][0]['author']",
+// "$['store']['book'][1]['author']",
+// "$['store']['book'][2]['author']",
+// "$['store']['book'][3]['author']"
+```
+
+### exec
+
+If you need both the value and the path, you can use `exec` member that takes a callback.
+The callback accepts two parameters:
+- `value` - the evaluated JSON Value
+- `path` - the expanded path for the location of the value. Note that keys are normalized according to the normalized path rules.
 
 ```ts
 import { exec } from 'jsonpath-rfc9535';
@@ -76,8 +110,8 @@ const document = {
 }
 
 const path = '$.store.book[*].author';
-const result = exec(document, path, (value) => {
-  // consume matched value
+const result = exec(document, path, (value, path) => {
+  // consume matched value and/or path
 });
 ```
 ## Parser

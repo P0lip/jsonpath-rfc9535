@@ -1,5 +1,6 @@
 import type { SliceSelector } from "../../parser/ast.ts";
-import type { JsonValue } from "../results.js";
+import { joinPathWithKey } from "../path.ts";
+import type { JsonValue } from "../results.ts";
 import type { Context, StackItem } from "../types.ts";
 
 function normalize(i: number, len: number): number {
@@ -28,7 +29,7 @@ function bounds(
 
 export default function visitSliceSelector(
 	ctx: Context,
-	{ root, value, index }: StackItem<JsonValue[]>,
+	{ root, path, value, index }: StackItem<JsonValue[]>,
 	node: SliceSelector,
 ): void {
 	const step = node.step ?? 1;
@@ -44,13 +45,23 @@ export default function visitSliceSelector(
 	if (step > 0) {
 		let i = lower;
 		while (i < upper) {
-			ctx.stack.push({ root, value: value[i], index: index + 1 });
+			ctx.stack.push({
+				root,
+				path: joinPathWithKey(path, i),
+				value: value[i],
+				index: index + 1,
+			});
 			i += step;
 		}
 	} else if (step < 0) {
 		let i = upper;
 		while (lower < i) {
-			ctx.stack.push({ root, value: value[i], index: index + 1 });
+			ctx.stack.push({
+				root,
+				path: joinPathWithKey(path, i),
+				value: value[i],
+				index: index + 1,
+			});
 			i += step;
 		}
 	}

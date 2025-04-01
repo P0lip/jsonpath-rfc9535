@@ -3,7 +3,8 @@
   "queries": [
     {
       "path": "$",
-      "values": [{ "k": "v" }]
+      "values": [{ "k": "v" }],
+      "paths": ["$"]
     }
   ]
 }

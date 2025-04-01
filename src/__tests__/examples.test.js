@@ -3,7 +3,7 @@ import * as fs from "node:fs/promises";
 import { join } from "node:path";
 import { describe, it } from "node:test";
 
-import { query } from "../index.ts";
+import { paths, query } from "../index.ts";
 
 const fixtures = await Promise.all(
 	(await fs.readdir(join(import.meta.dirname, "./fixtures/examples"))).map(
@@ -27,9 +27,15 @@ describe("RFC 9535 Spec Examples", () => {
 		data: { queries, document },
 	} of fixtures) {
 		describe(name, () => {
-			for (const { path, values } of queries) {
-				it(path, () => {
-					assert.deepStrictEqual(query(document, path), values);
+			for (const { path, values, paths: expectedPaths } of queries) {
+				describe(path, () => {
+					it("query", () => {
+						assert.deepStrictEqual(query(document, path), values);
+					});
+
+					it("paths", () => {
+						assert.deepStrictEqual(paths(document, path), expectedPaths);
+					});
 				});
 			}
 		});

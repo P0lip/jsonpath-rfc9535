@@ -4,6 +4,7 @@ import {
 	isStackItemWithArrayValue,
 	isStackItemWithObjectValue,
 } from "../../utils/guards.ts";
+import { joinPathWithKey } from "../path.ts";
 import type { JsonValue } from "../results.ts";
 import type { Context, StackItem } from "../types.ts";
 import visitFilterSelector from "./filter-selector.ts";
@@ -54,7 +55,7 @@ export default function visitBracketedSelection(
 
 function visitFilterSelectorForArrayItem(
 	ctx: Context,
-	{ root, value, index }: StackItem<JsonValue[]>,
+	{ root, path, value, index }: StackItem<JsonValue[]>,
 	node: FilterSelector,
 ) {
 	for (let i = 0; i < value.length; i++) {
@@ -62,6 +63,7 @@ function visitFilterSelectorForArrayItem(
 			ctx,
 			{
 				root,
+				path: joinPathWithKey(path, i),
 				value: value[i],
 				index,
 			},
@@ -72,7 +74,7 @@ function visitFilterSelectorForArrayItem(
 
 function visitFilterSelectorForObjectItem(
 	ctx: Context,
-	{ root, value, index }: StackItem<Record<string, JsonValue>>,
+	{ root, path, value, index }: StackItem<Record<string, JsonValue>>,
 	node: FilterSelector,
 ) {
 	for (const key of Object.keys(value)) {
@@ -80,6 +82,7 @@ function visitFilterSelectorForObjectItem(
 			ctx,
 			{
 				root,
+				path: joinPathWithKey(path, key),
 				value: value[key],
 				index,
 			},

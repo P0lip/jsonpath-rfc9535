@@ -3,39 +3,48 @@
   "queries": [
     {
       "path": "$.a",
-      "values": [null]
+      "values": [null],
+      "paths": ["$['a']"]
     },
     {
       "path": "$.a[0]",
-      "values": []
+      "values": [],
+      "paths": []
     },
     {
       "path": "$.a.d",
-      "values": []
+      "values": [],
+      "paths": []
     },
     {
       "path": "$.b[0]",
-      "values": [null]
+      "values": [null],
+      "paths": ["$['b'][0]"]
     },
     {
       "path": "$.b[*]",
-      "values": [null]
+      "values": [null],
+      "paths": ["$['b'][0]"]
     },
     {
       "path": "$.b[?@]",
-      "values": [null]
+      "values": [null],
+      "paths": ["$['b'][0]"]
     },
     {
       "path": "$.b[?@==null]",
-      "values": [null]
+      "values": [null],
+      "paths": ["$['b'][0]"]
     },
     {
       "path": "$.c[?@.d==null]",
-      "values": []
+      "values": [],
+      "paths": []
     },
     {
       "path": "$.null",
-      "values": [1]
+      "values": [1],
+      "paths": ["$['null']"]
     }
   ]
 }

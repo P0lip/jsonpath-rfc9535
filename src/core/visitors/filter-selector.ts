@@ -16,5 +16,10 @@ export default function visitFilterSelector(
 		return;
 	}
 
-	ctx.stack.push({ root: item.root, value: item.value, index: item.index + 1 });
+	ctx.stack.push({
+		root: item.root,
+		path: item.path,
+		value: item.value,
+		index: item.index + 1,
+	});
 }

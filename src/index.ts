@@ -30,13 +30,22 @@ export function exec(input: JsonValue, expression: string, cb: Callback): void {
 export function batchExec(
 	input: JsonValue,
 	expressionToCallback: Map<string, Callback>,
+	errorCallback?: ErrorCallback,
 ): void {
 	for (const [expression, cb] of expressionToCallback) {
-		exec(input, expression, cb);
+		try {
+			exec(input, expression, cb);
+		} catch (e) {
+			errorCallback?.(
+				e instanceof Error ? e : new Error(String(e)),
+				expression,
+			);
+		}
 	}
 }
 
 export type { JsonValue };
 
+export type ErrorCallback = (error: Error, expression: string) => void;
 export type { Callback } from "./core/types.ts";
 export type { Path } from "./core/path.ts";

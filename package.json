@@ -15,8 +15,10 @@
     "node": ">=20"
   },
   "files": [
-    "src",
-    "dist"
+    "dist/",
+    "package.json",
+    "LICENSE",
+    "README.md"
   ],
   "type": "module",
   "types": "./dist/esm/index.d.ts",

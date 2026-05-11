@@ -17,7 +17,7 @@
     "allowJs": true,
     "declaration": true,
     "sourceMap": true,
-    "outDir": "./dist/esm",
+    "inlineSources": true,
     "importHelpers": false,
     "noEmitHelpers": true,
     "noEmitOnError": true,
@@ -36,6 +36,6 @@
     "useUnknownInCatchVariables": true,
     "noImplicitReturns": true,
     "noPropertyAccessFromIndexSignature": true,
-    "skipLibCheck": true,
-  },
+    "skipLibCheck": true
+  }
 }

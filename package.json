@@ -1,6 +1,6 @@
 {
   "name": "jsonpath-rfc9535",
-  "version": "1.3.0",
+  "version": "2.0.0",
   "description": "A JSONPath implementation based on RFC 9535",
   "keywords": [
     "json",
@@ -12,36 +12,22 @@
     "url": "https://github.com/P0lip/jsonpath-rfc9535/issues"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "files": [
-    "src",
-    "dist"
+    "dist/",
+    "README.md",
+    "package.json"
   ],
   "type": "module",
-  "types": "./dist/esm/index.d.ts",
-  "module": "./dist/esm/index.js",
   "exports": {
     ".": {
-      "import": {
-        "types": "./dist/esm/index.d.ts",
-        "default": "./dist/esm/index.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/index.d.ts",
-        "default": "./dist/commonjs/index.js"
-      }
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     },
-    "./package.json": "./package.json",
     "./parser": {
-      "import": {
-        "types": "./dist/esm/parser/index.d.ts",
-        "default": "./dist/esm/parser/index.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/parser/index.d.ts",
-        "default": "./dist/commonjs/parser/index.js"
-      }
+      "types": "./dist/parser/index.d.ts",
+      "default": "./dist/parser/index.js"
     }
   },
   "sideEffects": false,
@@ -52,13 +38,11 @@
     "url": "https://github.com/P0lip/jsonpath-rfc9535"
   },
   "scripts": {
-    "build:esm": "tsc --outDir dist/esm && echo '{\"type\":\"module\"}' > dist/esm/package.json",
-    "build:cjs": "tsc --project tsconfig.cjs.json --outDir dist/commonjs && echo '{\"type\":\"commonjs\"}' > dist/commonjs/package.json",
-    "build": "npm run build:esm && npm run build:cjs",
+    "build": "tsc --outDir dist/",
     "build.parser": "peggy src/parser/grammars/grammar.peggy --output src/parser/parser.js --format es --dts",
     "lint": "npx @biomejs/biome check",
     "type-check": "tsc --noEmit",
-    "test": "node --test --experimental-strip-types --experimental-test-coverage --test-reporter=lcov --test-reporter=dot --test-reporter-destination=lcov.info --test-reporter-destination=stdout",
+    "test": "node --test --experimental-test-coverage --test-reporter=lcov --test-reporter=dot --test-reporter-destination=lcov.info --test-reporter-destination=stdout",
     "prepare": "husky"
   },
   "devDependencies": {

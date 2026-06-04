@@ -312,8 +312,7 @@ function_name
 
 function_argument
   = literal
-  / filter_query
-  / function_expr
+  / value:(filter_query / function_expr) !(S (comparison_op / "&&" / "||")) { return value }
   / logical_expr
 
 number

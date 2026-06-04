@@ -334,4 +334,30 @@ describe("evalFunctionExpr", () => {
 		const result = evalFunctionExpr(ctx, item, node);
 		assert.strictEqual(result, "result");
 	});
+
+	it("should evaluate a ComparisonExpr argument for a LogicalType parameter", () => {
+		const ctx = {
+			functions: {
+				fn: {
+					definition: { parameters: ["LogicalType"] },
+					declaration: (_, value) => value,
+				},
+			},
+		};
+		const item = { root: {}, value: {}, index: 0 };
+		const node = {
+			type: "FunctionExpr",
+			name: "fn",
+			arguments: [
+				{
+					type: "ComparisonExpr",
+					left: { type: "Literal", value: 1 },
+					op: "==",
+					right: { type: "Literal", value: 1 },
+				},
+			],
+		};
+		const result = evalFunctionExpr(ctx, item, node);
+		assert.strictEqual(result, true);
+	});
 });

@@ -1,0 +1,16 @@
+{
+  "$comment": "chained && regression (issue #5)",
+  "document": [{ "a": "1" }],
+  "queries": [
+    {
+      "path": "$[?(@.a==\"1\" && @.a==\"1\" && @.a==\"0\")]",
+      "values": [],
+      "paths": []
+    },
+    {
+      "path": "$[?(@.a==\"1\" && @.a==\"1\" && @.a==\"1\")]",
+      "values": [{ "a": "1" }],
+      "paths": ["$[0]"]
+    }
+  ]
+}

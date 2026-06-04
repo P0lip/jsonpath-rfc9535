@@ -19,6 +19,7 @@ export default function evalFunctionArgument(
 		case "LogicalAndExpr":
 		case "LogicalOrExpr":
 		case "TestExpr":
+		case "ComparisonExpr":
 			return evalLogicalExpr(ctx, item, node);
 		case "Literal":
 			return node.value;

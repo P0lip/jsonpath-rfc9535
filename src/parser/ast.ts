@@ -103,10 +103,11 @@ export type FunctionExpr = {
 	arguments: FunctionArgument[];
 };
 
-export type FunctionArgument = Exclude<
-	Literal | FilterQuery | LogicalExpr | FunctionExpr,
-	ComparisonExpr
->;
+export type FunctionArgument =
+	| Literal
+	| FilterQuery
+	| LogicalExpr
+	| FunctionExpr;
 
 export type RelQuery = {
 	type: "RelQuery";

@@ -5,19 +5,14 @@ import { describe, it } from "node:test";
 
 import { paths, query } from "../index.ts";
 
-const fixtures = await Promise.all(
-	(await fs.readdir(join(import.meta.dirname, "./fixtures/examples"))).map(
-		async (filename) => {
-			const text = await fs.readFile(
-				join(import.meta.dirname, "./fixtures/examples", filename),
-				"utf8",
-			);
+const examplesDir = join(import.meta.dirname, "./fixtures/examples");
 
-			return {
-				name: filename,
-				data: JSON.parse(text),
-			};
-		},
+const fixtures = await Promise.all(
+	(await Array.fromAsync(fs.glob("**/*.json", { cwd: examplesDir }))).map(
+		async (filename) => ({
+			name: filename,
+			data: JSON.parse(await fs.readFile(join(examplesDir, filename), "utf8")),
+		}),
 	),
 );
 

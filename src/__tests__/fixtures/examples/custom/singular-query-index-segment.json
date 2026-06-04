@@ -1,0 +1,21 @@
+{
+  "$comment": "bracketed index segment in singular query",
+  "document": { "rows": [[10, 20], [30, 40]], "key": [30] },
+  "queries": [
+    {
+      "path": "$.rows[?@[0] == 30]",
+      "values": [[30, 40]],
+      "paths": ["$['rows'][1]"]
+    },
+    {
+      "path": "$.rows[?@[-1] == 20]",
+      "values": [[10, 20]],
+      "paths": ["$['rows'][0]"]
+    },
+    {
+      "path": "$.rows[?@[0] == $.key[0]]",
+      "values": [[30, 40]],
+      "paths": ["$['rows'][1]"]
+    }
+  ]
+}

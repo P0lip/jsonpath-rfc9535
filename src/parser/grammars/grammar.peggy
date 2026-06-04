@@ -364,4 +364,4 @@ name_segment
   / ("." value:member_name_shorthand { return value })
 
 index_segment
-  = "[" selector:index_selector "]" { return { type: "IndexSelector", selector } }
+  = "[" value:index_selector "]" { return value }

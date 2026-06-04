@@ -200,7 +200,7 @@ logical_and_expr
       left: conditions[0],
       right: conditions.length === 2 ? conditions[1] : conditions.slice(2)
         .reduce((acc, curr) => ({
-          type: "LogicalOrExpr",
+          type: "LogicalAndExpr",
           left: acc,
           right: curr,
         }), conditions[1])
